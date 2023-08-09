@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ChirpController;
+use App\Http\Controllers\CourseController;
 use Illuminate\Support\Facades\Route;
 /*
 |--------------------------------------------------------------------------
@@ -31,5 +32,10 @@ Route::middleware('auth')->group(function () {
 Route::resource('chirps', ChirpController::class)
     ->only(['index', 'store'])
     ->middleware(['auth', 'verified']);
+
+    
+Route::get('/courses', [CourseController::class, 'index'])->name('courses');
+Route::get('/add-course', [CourseController::class, 'create'])->name('add-course');
+Route::post('/add-course', [CourseController::class, 'store']);
 
 require __DIR__.'/auth.php';
